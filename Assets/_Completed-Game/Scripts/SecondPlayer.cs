@@ -45,11 +45,18 @@ public class SecondPlayer : MonoBehaviour {
 		// Add a physical force to our Player rigidbody using our 'movement' Vector3 above, 
 		// multiplying it by 'speed' - our public player speed that appears in the inspector
 		rb.AddForce (movement * speed);
-	}
 
-	// When this game object intersects a collider with 'is trigger' checked, 
-	// store a reference to that collider in a variable named 'other'..
-	void OnTriggerEnter(Collider other) 
+        if (rb.position.y < -2f)
+        {
+            FindObjectOfType<GameManager>().EndGame();
+        }
+
+
+    }
+
+    // When this game object intersects a collider with 'is trigger' checked, 
+    // store a reference to that collider in a variable named 'other'..
+    void OnTriggerEnter(Collider other) 
 	{
 		// ..and if the game object we intersect has the tag 'Pick Up' assigned to it..
 		if (other.gameObject.CompareTag ("Pick Up"))

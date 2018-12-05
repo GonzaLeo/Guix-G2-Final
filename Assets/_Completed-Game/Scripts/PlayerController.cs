@@ -45,6 +45,12 @@ public class PlayerController : MonoBehaviour {
 		// Add a physical force to our Player rigidbody using our 'movement' Vector3 above, 
 		// multiplying it by 'speed' - our public player speed that appears in the inspector
 		rb.AddForce (movement * speed);
+
+        if (rb.position.y < -2f)
+        {
+            FindObjectOfType<GameManager>().EndGame();
+        }
+
 	}
 
 	// When this game object intersects a collider with 'is trigger' checked, 
